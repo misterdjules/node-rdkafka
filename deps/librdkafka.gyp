@@ -46,8 +46,13 @@
           'defines': [
             'FWD_LINKING_REQ'
           ]
-        }]
-      ]
+        }],
+        ['OS=="solaris"', {
+          'cflags_cc!': [
+            '-fno-rtti',
+          ],
+        }],
+      ],
     },
     {
       "target_name": "librdkafka",
@@ -114,11 +119,28 @@
             },
           }
         ],
+	[
+          'OS=="solaris"',
+          {
+	    'cflags_cc!': [
+              '-fno-rtti'
+            ],
+            'cflags_c' : [
+              '-D_XOPEN_SOURCE=600',
+              '-std=c99',
+            ],
+            "dependencies": [
+              "librdkafka_config"
+            ]
+          }
+        ],
         [ "<(WITH_SASL)==1",
           {
             'sources': [
               'librdkafka/src/rdkafka_sasl.c',
-              'librdkafka/src/rdkafka_sasl_cyrus.c'
+              'librdkafka/src/rdkafka_sasl_cyrus.c',
+              'librdkafka/src/rdkafka_sasl_scram.c',
+              'librdkafka/src/rdkafka_sasl_plain.c',
             ]
           }
         ]
