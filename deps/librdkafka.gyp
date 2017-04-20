@@ -14,7 +14,7 @@
         "librdkafka"
       ],
       'sources': [
-         '<!@(pwd 2>&1 > /var/tmp/pwd.out && find librdkafka/src-cpp -name *.cpp)'
+         '<!@(find librdkafka/src-cpp -name *.cpp)'
       ],
       "conditions": [
         [
