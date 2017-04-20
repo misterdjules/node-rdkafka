@@ -64,6 +64,17 @@
             },
           }
         ],
+        [
+          'OS=="solaris"',
+          {
+            'cflags_cc' : [
+              '-std=c++11'
+            ],
+            'cflags_cc!': [
+              '-fno-rtti'
+            ]
+          }
+        ],
         [ "<(WITH_SASL)==1",
           {
             'libraries' : ['-lsasl2'],
