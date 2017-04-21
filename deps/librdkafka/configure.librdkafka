@@ -141,5 +141,8 @@ int foo (void) {
 	mkl_compile_check valgrind WITH_VALGRIND disable CC "" \
 			  "#include <valgrind/memcheck.h>"
     fi
+
+    mkl_compile_check endian HAS_ENDIAN disable CC "" \
+			  "#include <endian.h>"
 }
 

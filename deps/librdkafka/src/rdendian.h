@@ -60,7 +60,7 @@
  #include <endian.h>
 #elif defined __BSD__
   #include <sys/endian.h>
-#elif defined sun
+#elif !defined(HAS_ENDIAN) && (defined sun || defined __sun)
   #include <sys/byteorder.h>
   #include <sys/isa_defs.h>
 #ifdef _BIG_ENDIAN
@@ -108,8 +108,7 @@
 
 
 
-
-#if !defined(__sun) && !defined(be64toh)
+#if (!defined(__sun) || !defined(HAS_ENDIAN)) && !defined(be64toh)
 #error Missing definition for be64toh
 #endif
 
